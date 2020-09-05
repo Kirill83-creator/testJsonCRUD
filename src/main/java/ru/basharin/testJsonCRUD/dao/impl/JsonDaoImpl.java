@@ -5,7 +5,11 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.basharin.testJsonCRUD.dao.JsonDao;
+import ru.basharin.testJsonCRUD.model.JsonObject;
 
+import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,30 +17,26 @@ import java.util.List;
 @Repository
 public class JsonDaoImpl implements JsonDao {
 
-    @Autowired
-    private SessionFactory sessionFactory;
-
-    public JsonDaoImpl(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     public List<JSONObject> getAllJson() {
-        TypedQuery<String> query = sessionFactory.getCurrentSession().createNativeQuery("select * from json_table");
+        TypedQuery<String> query = (TypedQuery<String>) entityManager.createNativeQuery("select json_obj from `json_table`");
         List<String> res = query.getResultList();
         return convertToJson(res);
     }
 
     @Override
     public JSONObject getJsonById(int id) {
-        TypedQuery<String> query = sessionFactory.getCurrentSession().createNativeQuery("select * from json_table where 'id' = id");
+        TypedQuery<String> query = (TypedQuery<String>) entityManager.createNativeQuery("select * from `json_table` where 'id' = id");
         String res = query.getSingleResult();
         return new JSONObject(res);
     }
 
     @Override
     public void putJson(JSONObject json) {
-        TypedQuery<String> query = (TypedQuery<String>) sessionFactory.getCurrentSession().save(json);
+        entityManager.persist(json);
     }
 
     @Override
