@@ -1,13 +1,9 @@
 package ru.basharin.testJsonCRUD.dao.impl;
 
-import org.hibernate.SessionFactory;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.basharin.testJsonCRUD.dao.JsonDao;
-import ru.basharin.testJsonCRUD.model.JsonObject;
 
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;

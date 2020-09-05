@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Data
 @Entity
 @Table(name = "json_table")
-public class JsonObject extends BaseEntity{
+public class JsonObject extends BaseEntity {
 
     @Type(type = "json")
     @Column(columnDefinition = "json_obj")
