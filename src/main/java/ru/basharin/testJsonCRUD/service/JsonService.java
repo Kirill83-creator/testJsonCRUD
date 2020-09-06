@@ -1,6 +1,5 @@
 package ru.basharin.testJsonCRUD.service;
 
-import org.json.JSONObject;
 import ru.basharin.testJsonCRUD.model.JsonObject;
 
 import java.util.List;

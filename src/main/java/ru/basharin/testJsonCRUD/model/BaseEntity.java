@@ -1,5 +1,6 @@
 package ru.basharin.testJsonCRUD.model;
 
+import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import com.vladmihalcea.hibernate.type.json.JsonStringType;
 import lombok.Data;
 import org.hibernate.annotations.TypeDef;
@@ -11,12 +12,13 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @TypeDefs({
-        @TypeDef(name = "json", typeClass = JsonStringType.class)
+        @TypeDef(name = "json", typeClass = JsonStringType.class),
+        @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 })
-@MappedSuperclass
 @Data
+@MappedSuperclass
 public class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 }

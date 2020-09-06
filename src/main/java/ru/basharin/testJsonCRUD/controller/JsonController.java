@@ -1,6 +1,5 @@
 package ru.basharin.testJsonCRUD.controller;
 
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +27,7 @@ public class JsonController {
     }
 
     @PostMapping(value = "/json")
-    public ResponseEntity<Void> putJson(@RequestBody JSONObject json) {
+    public ResponseEntity<Void> putJson(@RequestBody String json) {
         JsonObject jsonObject = new JsonObject();
         jsonObject.setJsonObject(json);
         jsonService.putJson(jsonObject);
