@@ -2,17 +2,15 @@ package ru.basharin.testJsonCRUD.dao;
 
 import org.json.JSONObject;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 import ru.basharin.testJsonCRUD.model.JsonObject;
 
 import java.util.List;
 
+@Repository
 public interface JsonDao extends CrudRepository<JsonObject, Integer> {
 
-    List<JSONObject> getAllJson();
+    List<JsonObject> findAll();
 
-    JSONObject getJsonById(int id);
-
-    void putJson(JSONObject json);
-
-    List<JSONObject> convertToJson(List<String> strings);
+    JsonObject findById(int id);
 }

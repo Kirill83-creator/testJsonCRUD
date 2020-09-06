@@ -4,6 +4,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.basharin.testJsonCRUD.dao.JsonDao;
+import ru.basharin.testJsonCRUD.model.JsonObject;
 import ru.basharin.testJsonCRUD.service.JsonService;
 
 import javax.transaction.Transactional;
@@ -17,17 +18,17 @@ public class JsonServiceImpl implements JsonService {
     private JsonDao jsonDao;
 
     @Override
-    public List<JSONObject> getAllJson() {
-        return jsonDao.getAllJson();
+    public List<JsonObject> getAllJson() {
+        return jsonDao.findAll();
     }
 
     @Override
-    public JSONObject getJsonById(int id) {
-        return jsonDao.getJsonById(id);
+    public JsonObject getJsonById(int id) {
+        return jsonDao.findById(id);
     }
 
     @Override
-    public void putJson(JSONObject json) {
-        jsonDao.putJson(json);
+    public void putJson(JsonObject json) {
+        jsonDao.save(json);
     }
 }

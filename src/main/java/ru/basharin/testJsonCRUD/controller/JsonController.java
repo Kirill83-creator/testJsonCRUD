@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.basharin.testJsonCRUD.model.JsonObject;
 import ru.basharin.testJsonCRUD.service.JsonService;
 
 import java.util.List;
@@ -17,18 +18,20 @@ public class JsonController {
     private JsonService jsonService;
 
     @GetMapping
-    public ResponseEntity<List<JSONObject>> getAllJson() {
+    public ResponseEntity<List<JsonObject>> getAllJson() {
         return ResponseEntity.ok(jsonService.getAllJson());
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<JSONObject> getJsonById(@PathVariable("id") int id) {
+    public ResponseEntity<JsonObject> getJsonById(@PathVariable("id") int id) {
         return ResponseEntity.ok(jsonService.getJsonById(id));
     }
 
     @PostMapping(value = "/json")
     public ResponseEntity<Void> putJson(@RequestBody JSONObject json) {
-        jsonService.putJson(json);
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.setJsonObject(json);
+        jsonService.putJson(jsonObject);
         return new ResponseEntity(HttpStatus.OK);
     }
 }
