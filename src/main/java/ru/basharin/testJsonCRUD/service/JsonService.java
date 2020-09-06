@@ -3,9 +3,10 @@ package ru.basharin.testJsonCRUD.service;
 import ru.basharin.testJsonCRUD.model.JsonObject;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface JsonService {
     List<JsonObject> getAllJson();
-    JsonObject getJsonById(int id);
+    Optional<JsonObject> getJsonById(Integer id);
     void putJson(JsonObject json);
 }

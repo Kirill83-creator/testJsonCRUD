@@ -8,6 +8,7 @@ import ru.basharin.testJsonCRUD.model.JsonObject;
 import ru.basharin.testJsonCRUD.service.JsonService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/")
@@ -22,7 +23,7 @@ public class JsonController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<JsonObject> getJsonById(@PathVariable("id") int id) {
+    public ResponseEntity<Optional<JsonObject>> getJsonById(@PathVariable("id") Integer id) {
         return ResponseEntity.ok(jsonService.getJsonById(id));
     }
 
