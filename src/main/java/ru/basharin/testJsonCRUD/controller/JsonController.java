@@ -14,16 +14,25 @@ import java.util.Optional;
 @RequestMapping("/")
 public class JsonController {
 
-    @Autowired
-    private JsonService jsonService;
+    private final JsonService jsonService;
+
+    public JsonController(JsonService jsonService) {
+        this.jsonService = jsonService;
+    }
 
     @GetMapping
     public ResponseEntity<List<JsonObject>> getAllJson() {
+        if (jsonService.getAllJson().isEmpty()) {
+            return  new ResponseEntity(HttpStatus.NO_CONTENT);
+        }
         return ResponseEntity.ok(jsonService.getAllJson());
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Optional<JsonObject>> getJsonById(@PathVariable("id") Integer id) {
+        if (jsonService.getJsonById(id).isEmpty()) {
+            return  new ResponseEntity(HttpStatus.NO_CONTENT);
+        }
         return ResponseEntity.ok(jsonService.getJsonById(id));
     }
 

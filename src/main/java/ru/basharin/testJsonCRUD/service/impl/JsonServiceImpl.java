@@ -7,7 +7,6 @@ import ru.basharin.testJsonCRUD.model.JsonObject;
 import ru.basharin.testJsonCRUD.service.JsonService;
 
 import javax.transaction.Transactional;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
