@@ -9,4 +9,6 @@ public interface JsonService {
     List<JsonObject> getAllJson();
     Optional<JsonObject> getJsonById(Integer id);
     void putJson(JsonObject json);
+    boolean validationJsonObj(String inputString);
+    boolean validationJsonObjoInt(String inputString);
 }

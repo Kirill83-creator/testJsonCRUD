@@ -39,6 +39,10 @@ public class JsonController {
     @PostMapping(value = "/json")
     public ResponseEntity<Void> putJson(@RequestBody String json) {
         JsonObject jsonObject = new JsonObject();
+
+        if (!jsonService.validationJsonObj(json) || jsonService.validationJsonObjoInt(json)) {
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
         jsonObject.setJsonObject(json);
         jsonService.putJson(jsonObject);
         return new ResponseEntity(HttpStatus.OK);
